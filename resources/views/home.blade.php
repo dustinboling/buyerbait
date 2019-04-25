@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <h3 class="card-title">{{ Auth::user()->name }}</h3>
+                    <p class="card-text">{{ Auth::user()->formattedPhone() }}</p>
+                    <p class="card-text">{{ Auth::user()->email }}</p>
                 </div>
             </div>
         </div>
