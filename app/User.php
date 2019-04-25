@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,6 +37,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function formattedPhone()
+    {
+        $raw = Auth::user()->phone;
+        $formatted = sprintf("(%s) %s-%s",
+            substr($raw, 0, 3),
+            substr($raw, 3, 3),
+            substr($raw, 6)
+        );
+
+        return $formatted;
+    }
 
     public function extensions()
     {
