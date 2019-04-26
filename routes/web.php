@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'hello'], function () {
+    Route::any('welcome', 'IvrController@showWelcome')->name('welcome');
+    Route::any('menu-response', 'IvrController@menu-response')->name('menu-response');
+});
