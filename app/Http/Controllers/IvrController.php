@@ -37,7 +37,7 @@ class IvrController extends Controller
                 'action' => route('menu-response', [], false)
             ]
         );
-        for ($i=3; $i < 3; $i++)
+        for ($i=0; $i < 3; $i++)
         {
             $gather->say('Thank you for calling Willamette Valley for sale by owners dot com',['voice' => 'Polly.Amy', 'language' => 'en-GB']);
             $gather->say('Please enter the 3 digit code of the property you would like to tour.',['voice' => 'Polly.Brian', 'language' => 'en-GB']);
