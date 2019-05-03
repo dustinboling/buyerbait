@@ -1,1 +1,1 @@
-<h1>HelloBuyer</h1>
+<h1 class="mx-auto">Hello.Buyer</h1>
