@@ -54,4 +54,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Extension')->withTimestamps();
     }
+
+    public function callers()
+    {
+        return $this->hasMany('App\Caller');
+    }
+
+    public function calls()
+    {
+        return $this->hasManyThrough('App\Call', 'App\Caller');
+    }
 }

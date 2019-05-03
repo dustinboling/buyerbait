@@ -71,7 +71,9 @@ class ExtensionController extends Controller
      */
     public function show(Extension $extension)
     {
-        //
+        $number = 101;
+        return Extension::first()->where('number',$number)->pluck('message');
+        return $extension;
     }
 
     /**

@@ -6,6 +6,8 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -44,12 +46,25 @@ class Extension extends Resource
     {
         return [
             ID::make()->sortable(),
-            Number::make('Number')->sortable()->rules('required'),
-            Text::make('Name')->sortable()->rules('required'),
-            Text::make('Message')->rules('required')->hideFromIndex(),
-            Text::make('Transfer Prompt')->rules('required')->hideFromIndex(),
-            Text::make('Voicemail Prompt')->rules('required')->hideFromIndex(),
+            Number::make('Number')
+                ->sortable()
+                ->rules('required'),
+            Text::make('Name')
+                ->sortable()
+                ->rules('required'),
+            Textarea::make('Message')
+                ->rules('required')
+                ->hideFromIndex(),
+            Textarea::make('Transfer Prompt')
+                ->withMeta(['value' => $this->transfer_prompt ?? 'Would you like additional photos and current pricing for this property? If so, say yes.'])
+                ->rules('required')
+                ->hideFromIndex(),
+            Textarea::make('Voicemail Prompt')
+                ->withMeta(['value' => $this->transfer_prompt ?? 'I\'m sorry our listing agent Bob Ross is currently helping another caller. You can expect a return call from him shortly, or would you like to leave a voicemail? If so, say yes.'])
+                ->rules('required')
+                ->hideFromIndex(),
             BelongsToMany::make('Agents'),
+            HasMany::make('Calls'),
         ];
     }
 

@@ -18,10 +18,6 @@ class CreateExtensionUserTable extends Migration
             $table->unsignedbigInteger('extension_id');
             $table->unsignedbigInteger('user_id');
             $table->timestamps();
-
-            // Foreign Key Constraints
-            $table->foreign('extension_id')->references('id')->on('extensions');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

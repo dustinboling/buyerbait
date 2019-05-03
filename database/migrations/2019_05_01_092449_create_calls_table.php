@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExtensionsTable extends Migration
+class CreateCallsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,12 @@ class CreateExtensionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('extensions', function (Blueprint $table) {
+        Schema::create('calls', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedSmallInteger('number')->unique();
-            $table->string('name');
-            $table->text('message');
-            $table->text('transfer_prompt');
-            $table->text('voicemail_prompt');
+            $table->unsignedBigInteger('caller_id');
+            $table->unsignedBigInteger('extension_id')->nullable();
+            $table->string('sid');
             $table->timestamps();
-
-            // Indexes
-            $table->index('number');
         });
     }
 
@@ -34,6 +29,6 @@ class CreateExtensionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('extensions');
+        Schema::dropIfExists('calls');
     }
 }

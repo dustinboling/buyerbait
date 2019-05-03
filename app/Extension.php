@@ -16,6 +16,11 @@ class Extension extends Model
         'transfer_prompt', 'voicemail_prompt'
     ];
 
+    public function calls()
+    {
+        return $this->hasMany('App\Call');
+    }
+
     public function agents()
     {
         return $this->belongsToMany('App\User')->withTimestamps();
