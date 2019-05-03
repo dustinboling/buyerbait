@@ -24,12 +24,8 @@ Route::resource('extensions', 'ExtensionController')->only([
 ]);
 
 Route::group(['prefix' => 'hello'], function () {
-    Route::any('/greeting', 'IvrController@greeting')->name('greeting');
+    Route::any('greeting', 'IvrController@greeting')->name('greeting');
     Route::any('extension-message', 'IvrController@extensionMessage')->name('extension-message');
     Route::any('connect-agent', 'IvrController@connectAgent')->name('connect-agent');
-
-    Route::any('test/{$number}', 'IvrController@testGetExtensionMessage');
-
-    Route::any('conf-greeting', 'ConferenceController@greeting')->name('conf-greeting');
     Route::any('agent-called', 'AgentIvrController@agentCalled')->name('agent-called');
 });
