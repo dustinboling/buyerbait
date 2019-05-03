@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
+use App\Nova\Metrics\CallsPerDay;
+use App\Nova\Metrics\CallersPerDay;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
@@ -55,6 +57,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             //new Help,
+            (new CallersPerDay)->width('full'),
+            (new CallsPerDay)->width('full'),
         ];
     }
 

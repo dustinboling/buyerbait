@@ -57,7 +57,7 @@ class Call extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [(new Metrics\CallsPerDay)->width('full')];
     }
 
     /**
